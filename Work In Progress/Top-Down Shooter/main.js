@@ -23,11 +23,13 @@ class Player {
         };
 
         this.radius = 30;
-        this.angle = 0;
+        this.angle = Math.atan2(mousePositionY, mousePositionX);
         this.color = "black";
     }
 
     draw() {
+
+        // Draw Player
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(
@@ -41,18 +43,16 @@ class Player {
         ctx.fillStyle = this.color;
         ctx.arc(
             mousePositionX, mousePositionY,
-            this.radius, 0, Math.PI * 2
+            10, 0, Math.PI * 2
         );
         ctx.strokeStyle = "black";
         ctx.stroke();
 
 
-        let pX = this.position.x;
-        let pY = this.position.y;
 
         // Draw line between player-object and cursor
         ctx.beginPath();
-        ctx.moveTo(pX, pY);
+        ctx.moveTo(this.position.x, this.position.y);
         ctx.lineTo(mousePositionX, mousePositionY);
         ctx.strokeStyle = "red";
         ctx.stroke();
@@ -69,8 +69,8 @@ class Player {
 class Bullet{
     constructor() {
         this.position = {
-            x: mousePositionX,
-            y: mousepositionY
+            x: player.position.x,
+            y: player.position.y
         };
         this.velocity = {
             x: 0,
@@ -79,20 +79,33 @@ class Bullet{
 
         this.radius = 5;
         this.color = "black";
-    }
 
-    calcDir() {
-        let velocity = 10;
-        let vectorX = mousePositionX - player.Position.x;
-        let vectorY = mousePositionY - player.Position.y;
+        let vectorX = mousePositionX - player.position.x;
+        let vectorY = mousePositionY - player.position.y;
 
         let dist = Math.sqrt(vectorX * vectorX + vectorY * vectorY);
         let deltaX = vectorX / dist;
         let deltaY = vectorY / dist;
+
+    }
+
+    draw(){
+        ctx.beginPath();
+        ctx.arc(player.position.x, player.position.y, this.radius, 10, 0, Math.PI() * 2);
+        ctx.fillStyle = "green";
+        ctx.fill();
+    }
+
+    update(){
+        bullet.x += deltaX;
+        bullet.y += deltaY;
+        this.draw();
     }
 }
 
 const player = new Player();
+let bullets = [];
+
 const keys = {
     right: { pressed: false },
     left: { pressed: false },
@@ -105,6 +118,11 @@ const keys = {
 function animate() {
     requestAnimationFrame(animate);
     player.update();
+
+    for (let i = 0; i < bullets; i++){
+        bullets[i].update();
+        console.log(bullets[i]);
+    }
 
     if (keys.right.pressed){
         player.velocity.x = 2;
@@ -121,7 +139,7 @@ function animate() {
     // shoot bullet on mouse-click
     if (keys.leftMouse.pressed){
         let bullet = new Bullet;
-        bullet.calcDir();
+        bullet(player.position.x, player.position.y);
         console.log("mouse Click");
     } else { return }
 
@@ -143,10 +161,16 @@ function game(){
 
 }
 
+// OnMouseClick
+window.addEventListener("click", (e) => {
+    bullets.push(new Bullet())
+    console.log("Mouse left-click")
+})
+
 // Onkey event
 window.onkeydown = function(e) {
 
-    e.preventDefault(); //Stops key from scrolling pagedd
+    e.preventDefault(); //Stops key from scrolling page
 
     //<---keybindings--->
     if(e.keyCode == 87){ // if key "w"
