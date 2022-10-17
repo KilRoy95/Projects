@@ -38,7 +38,7 @@ class Player {
         );
         ctx.fill();
 
-        // CrossHair
+        // Draw CrossHair
         ctx.beginPath();
         ctx.fillStyle = this.color;
         ctx.arc(
@@ -47,8 +47,6 @@ class Player {
         );
         ctx.strokeStyle = "black";
         ctx.stroke();
-
-
 
         // Draw line between player-object and cursor
         ctx.beginPath();
@@ -163,7 +161,9 @@ function game(){
 
 // OnMouseClick
 window.addEventListener("click", (e) => {
-    bullets.push(new Bullet())
+    // bullet velocity = normalize(player position - mouse position) * magnitude
+    let bullet = new Bullet();
+    bullet.velocity = normalize(player.position.x - mousePositionX * player.position.y - mousePositionY);
     console.log("Mouse left-click")
 })
 
@@ -174,22 +174,18 @@ window.onkeydown = function(e) {
 
     //<---keybindings--->
     if(e.keyCode == 87){ // if key "w"
-        // player.velocity.y -= 1;
         keys.up.pressed = true;
         console.log("up");
     }
     if(e.keyCode == 83){ // else-if key "s"
-        // player.velocity.y += 1;
         keys.down.pressed = true;
         console.log("down");
     }
     if(e.keyCode == 65){ // else-if key "a"
-        // player.velocity.x -= 1;
         keys.left.pressed = true;
         console.log("left");
     }
     if(e.keyCode == 68){ // else-if key "d"
-        // player.velocity.x += 1;
         keys.right.pressed = true;
         console.log("right");
     }
@@ -199,23 +195,19 @@ window.onkeyup = function(e){
     e.preventDefault(); //Stops key from scrolling page
 
     if(e.keyCode == 87){ // if key "w"
-        // player.velocity.y -= 1;
         keys.up.pressed = false;
         console.log("up (release)");
 
     }
     if(e.keyCode == 83){ // else-if key "s"
-        // player.velocity.y += 1;
         keys.down.pressed = false;
         console.log("down (release)");
     }
     if(e.keyCode == 65){ // else-if key "a"
-        // player.velocity.x -= 1;
         keys.left.pressed = false;
         console.log("left (release)");
     }
     if(e.keyCode == 68){ // else-if key "d"
-        // player.velocity.x += 1;
         keys.right.pressed = false;
         console.log("right (release)");
     }
@@ -224,7 +216,7 @@ window.onkeyup = function(e){
 function getCursorPosition(e){
     mousePositionX = e.x;
     mousePositionY = e.y;
-    // document.getElementById("mouseXSpan").textContent = e.x;
-    // document.getElementById("mouseYSpan").textContent = e.y;
+    // document.getElementById("mouseXSpan").textContent = "X: " + e.x;  // Prints coordinates to <span> if added in HTML
+    // document.getElementById("mouseYSpan").textContent = "Y: " + e.y; // <span id="mouseXSpan"></span> <span id="mouseYSpan"></span>
 }
 requestAnimationFrame(game);
