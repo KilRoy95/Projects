@@ -1,0 +1,97 @@
+body{
+    background-color: black;
+    color:greenyellow;
+    display:grid;
+    grid-template:
+
+    "header header header" 1
+    "nav nav nav" 5em
+    "aside main main" 35vh
+    "aside main main" auto
+    "footer footer footer" 10em;
+}
+
+header{
+    text-align: center;
+    transition: 1s;
+}
+
+nav{
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 5px 5px 10px 1px greenyellow;
+    border-top: 2px ridge greenyellow;
+    border-bottom: 2px solid greenyellow;
+    border-radius: 12px;
+    transition: 1s
+}
+
+nav a{
+    color:cyan;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+nav a:hover{
+    box-shadow: 0px 0px 50px 5px cyan;
+    border-radius: 100px;
+    font-size: 1.5em;
+    transition: 0.5s;
+}
+
+main{
+    color: orange;
+    text-align: Center;
+    padding-bottom: 2.5rem;
+}
+
+main p{
+    margin: none;
+    transition: 0.5s;
+    animation: 5s fadein;
+}
+
+main p:hover{
+    font-size: 1.2em;
+    transition: 0.5s;
+}
+
+aside{
+}
+
+footer{
+    text-align: center;
+    border-top: 3px ridge violet;
+    border-radius: 12px;
+    box-shadow: 5px -5px 10px 1px violet;
+    position:sticky;
+    bottom: 0;
+    width: 100%;
+    transition: 2s;
+}
+
+#startButton{
+    background-color: transparent;
+    color:greenyellow;
+    font-size: 3em;
+    border: 5px ridge greenyellow;
+    border-radius: 12px;
+    box-shadow: 0px 1px 10px 1px greenyellow;
+    margin: 100px;
+}
+
+#startButton:hover{
+    box-shadow:  0px 0px 50px 1px greenyellow;
+    background-color:greenyellow;
+    color: black;
+}
+
+@keyframes fadein{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
+}
+
