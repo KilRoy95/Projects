@@ -3,52 +3,58 @@ body{
     color:greenyellow;
     display:grid;
     grid-template:
-
-    "header header header" 1
-    "nav nav nav" 5em
-    "aside main main" 35vh
-    "aside main main" auto
-    "footer footer footer" 10em;
+    "head head head" 10em
+    "nav nav nav" 10vh
+    "main main main" auto
+    "foot foot foot" auto;
 }
 
 header{
+    grid-area: head;
     text-align: center;
-    transition: 1s;
 }
 
 nav{
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
     text-align: center;
-    white-space: nowrap;
-    box-shadow: 5px 5px 10px 1px greenyellow;
+    align-items: center;
+    box-shadow: 0px 0px 10px 1px greenyellow;
     border-top: 2px ridge greenyellow;
     border-bottom: 2px solid greenyellow;
     border-radius: 12px;
-    transition: 1s
 }
 
 nav a{
     color:cyan;
-    display: inline-block;
+    margin-right: 20px;
+    margin-left: 20px;
     transition: 0.5s;
+
+    background-color: transparent;
+    transition: 0s;
 }
 
 nav a:hover{
-    box-shadow: 0px 0px 50px 5px cyan;
-    border-radius: 100px;
     font-size: 1.5em;
     transition: 0.5s;
 }
 
 main{
+    grid-area: main;
     color: orange;
-    text-align: Center;
+    text-align: center;
     padding-bottom: 2.5rem;
 }
 
+
 main p{
-    margin: none;
     transition: 0.5s;
     animation: 5s fadein;
+    cursor: default;
+    margin: auto;
+    padding: 5px;
 }
 
 main p:hover{
@@ -57,17 +63,62 @@ main p:hover{
 }
 
 footer{
+    grid-area: foot;
     text-align: center;
     border-top: 3px ridge violet;
     border-radius: 12px;
-    box-shadow: 5px -5px 10px 1px violet;
-    position:sticky;
+    box-shadow: 0px 0px 10px 1px violet;
+    position: absolute;
     bottom: 0;
     width: 100%;
     transition: 2s;
 }
 
-#startButton{
+#rulesTextArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 3px solid cyan;
+    border-bottom: 3px solid cyan;
+    border-radius: 12px;
+}
+
+#rulesImg{
+    animation: 5s fadein;
+}
+
+#Buttons{
+    display: flex;
+    justify-content: center;
+    border-radius: 12px;
+    margin: 20px;
+}
+
+#hand{
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#gameImage{
+    transition: 0.5s;
+    border-top: 1px solid cyan;
+    border-bottom: 1px solid cyan;
+    border-radius: 12px;
+    padding: 12px;
+    animation: 5s fadein;
+}
+
+#gameImage:hover{
+    width: 100px;
+    box-shadow: 
+    inset 0px 8px 6px -6px cyan, 
+    inset 0px 8px 6px -6px cyan, 
+    inset 0px -8px 6px -6px cyan, 
+    inset 0px -8px 6px -6px cyan;
+    transition: 0.5s;
+}
+
+#startButton, #playAgainBtn{
     background-color: transparent;
     color:greenyellow;
     font-size: 3em;
@@ -75,12 +126,25 @@ footer{
     border-radius: 12px;
     box-shadow: 0px 1px 10px 1px greenyellow;
     margin: 100px;
+    transition: 0.5s;
 }
 
-#startButton:hover{
-    box-shadow:  0px 0px 50px 1px greenyellow;
+#startButton:hover, #playAgainBtn:hover{
+    box-shadow:  0px 0px 30px 1px greenyellow, inset 0px 0px 50px 1px black;
     background-color:greenyellow;
     color: black;
+    font-size: 3.5em;
+    cursor:pointer;
+    transition: 0.5s;
+}
+
+#startButton:active, #playAgainBtn:active{
+    box-shadow:  0px 0px 30px 1px greenyellow, inset 5px 5px 30px 10px black;
+    transition: 0s;
+}
+
+#playAgainBtn{
+    visibility: none;
 }
 
 @keyframes fadein{
@@ -91,4 +155,3 @@ footer{
         opacity: 100;
     }
 }
-

@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>RPS-Game</title>
+    <title>R.P.S-Game</title>
 </head>
 <body>
     <header>
+
         <h1>Rock, Paper, Scissors</h1>
     </header>
 
     <nav>
-        <a href="game.html">
+
+        <a style="color:orange" href="game.html">
             <h2>Game</h2>
         </a>
 
@@ -23,12 +25,30 @@
     </nav>
 
     <main>
-        <button id="startButton">Start Game</button>
+
+        <div id="ticker">
+
+            <h1 id="Score">Score</h1>
+            <p id="PlayerScore"></p>
+            <p id="CompScore"></p>
+        </div>
+
+        <div id="Buttons">
+
+                <button id="hand" onclick="PointHandler(1)"><img id="gameImage" src="images/Rock-Alpha.png" alt="Choice, Rock" width="75px"></button>
+                <button id="hand" onclick="PointHandler(2)"><img id="gameImage" src="images/Paper-Alpha.png" alt="Choice, Paper" width="75px"></button>
+                <button id="hand" onclick="PointHandler(3)"><img id="gameImage" src="images/Scissors-Alpha.png" alt="Choice, Scissors" width="75px"></button>
+        </div>
+
+        <button onclick="Reset()" id="playAgainBtn"><span>Play Again?</span></button>
+
     </main>
 
     <footer>
+
         <p>Footer</p>
     </footer>
 
+    <script src="main.js"></script>
 </body>
 </html>
