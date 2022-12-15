@@ -3,7 +3,7 @@ body{
     color:greenyellow;
     display:grid;
     grid-template:
-    "head head head" 10em
+    "head head head" 6em
     "nav nav nav" 10vh
     "main main main" auto
     "foot foot foot" auto;
@@ -27,13 +27,10 @@ nav{
 }
 
 nav a{
-    color:cyan;
-    margin-right: 20px;
-    margin-left: 20px;
+    color:orange;
+    margin-right: 50px;
+    margin-left: 50px;
     transition: 0.5s;
-
-    background-color: transparent;
-    transition: 0s;
 }
 
 nav a:hover{
@@ -74,13 +71,21 @@ footer{
     transition: 2s;
 }
 
+#scoreSymbol{
+    margin-left: 75px;
+    margin-right: 75px;
+    margin-top: 25px;
+    transition: 0.5s;
+}
+#scoreSymbol:hover{
+    width: 60px;
+    transition: 0.5s;
+}
+
 #rulesTextArea{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 3px solid cyan;
-    border-bottom: 3px solid cyan;
-    border-radius: 12px;
 }
 
 #rulesImg{
@@ -118,6 +123,18 @@ footer{
     transition: 0.5s;
 }
 
+#gameImage:active{
+    border-top: 1px solid greenyellow;
+    border-bottom: 1px solid  greenyellow;
+
+    box-shadow: 
+    inset 0px 8px 6px -6px greenyellow, 
+    inset 0px 8px 6px -6px greenyellow, 
+    inset 0px -8px 6px -6px greenyellow, 
+    inset 0px -8px 6px -6px greenyellow;
+
+}
+
 #startButton, #playAgainBtn{
     background-color: transparent;
     color:greenyellow;
@@ -144,7 +161,7 @@ footer{
 }
 
 #playAgainBtn{
-    visibility: none;
+    visibility: hidden;
 }
 
 @keyframes fadein{
